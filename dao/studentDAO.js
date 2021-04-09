@@ -15,6 +15,24 @@ class StudentDAO {
 
     return num_mat;
   }
+
+  async deleteStudent(numMat)
+  {
+   return db('Student').where('num_mat',numMat).del();
+  }
+
+  async updateStudent(numMat, email, firstName, lastName, level, course, password)
+  {
+     return db('Student').where({ num_mat: numMat}).update({
+      num_mat: numMat,
+      email,
+      first_name: firstName,
+      last_name: lastName,
+      level,
+      course,
+      password: password
+    });
+  }
 }
 
 module.exports = new StudentDAO();
