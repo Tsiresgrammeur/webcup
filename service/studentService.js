@@ -1,9 +1,23 @@
 const studentDAO = require('../dao/studentDAO');
 
-class StudentService {
-  createStudent(studentDto){
+class StudentService 
+{
+  createStudent(studentDto)
+  {
     const { numMat,email,firstName,lastName,level,course, password } = studentDto;
     return studentDAO.createStudent(numMat, email, firstName, lastName,level,course, password);
+  }
+
+  deleteStudent(idStudent)
+  {
+    const {numMat} = idStudent;
+    return studentDAO.deleteStudent(numMat);
+  }
+
+  updateStudent(studentDto)
+  {
+    const {numMat,email,firstName,lastName,level,course, password} = studentDto;
+    return studentDAO.updateStudent(numMat,email,firstName,lastName,level,course, password);
   }
 }
 
