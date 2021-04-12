@@ -1,6 +1,10 @@
 const db=require('../db/db');
 
 class StudentDAO {
+  async getStudent(numMat)
+  {
+    return db('Student').where('num_mat',numMat).first();
+  }
   async createStudent(numMat, email, firstName, lastName, level, course, password)
   {
     const [num_mat] = await db('Student').insert({
