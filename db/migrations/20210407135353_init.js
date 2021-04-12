@@ -10,7 +10,7 @@ exports.up = function(knex) {
     table.string('password');
   })
     .createTable('Manager', (table) => {
-    table.increments('id');
+    table.string('num_mat').primary();
     table.string('email').notNullable().unique();
     table.string('first_name').notNullable();
     table.string('last_name');
