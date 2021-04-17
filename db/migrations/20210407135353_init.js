@@ -26,28 +26,32 @@ exports.up = function(knex) {
     table.string('course');
     table.string('password');
   })
-    .createTable('Feeds', (table) => {
+    .createTable('Groups', (table) => {
       table.increments('id');
-      table.string('email_user');
-      table.string('path_feed');
-      table.timestamps('date_feed');
-      table.foreign('email_user').references('Manager.email').onDelete().onUpdate();
+      table.string('group_name').notNullable().unique();
   })
-    .createTable('club_Feed', (table) => {
+    .createTable('Categories', (table) => {
       table.increments('id');
-      table.string('email_user');
-      table.string('path_club');
-      table.timestamps('date_club');
-      table.foreign('email_user').references('Manager.email').onDelete().onUpdate();
-});
+      table.integer('id_group');
+      table.date('date');
+      table.foreign('id_group').references('Groups.id').onDelete('CASCADE').onUpdate('CASCADE');
+  })
+    .createTable('Offer', (table) => {
+      table.increments('id');
+      table.integer('id_group');
+      table.date('date');
+      table.string('interested', 1000);
+      table.foreign('id_group').references('Groups.id').onDelete('CASCADE').onUpdate('CASCADE');
+    })
 };
 
 exports.down = function(knex) {
   return knex.schema
           .dropTable('Manager')
-          .dropTable('Feeds')
-          .dropTable('clubFeeds')
+          .dropTable('Categories')
+          .dropTable('Offer')
           .dropTable('Waiting')
-          .dropTable('Student');
+          .dropTable('Student')
+          .dropTable('Groups');
 };
 

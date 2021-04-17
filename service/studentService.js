@@ -15,7 +15,7 @@ class StudentService
 
   deleteStudent(idStudent)
   {
-    const {numMat} = idStudent;
+    const numMat = idStudent;
     return studentDAO.deleteStudent(numMat);
   }
 
