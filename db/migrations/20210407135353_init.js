@@ -33,15 +33,22 @@ exports.up = function(knex) {
     .createTable('Categories', (table) => {
       table.increments('id');
       table.integer('id_group');
+      table.string('id_user');
+      table.string('description',400);
+      table.string('title');
       table.date('date');
       table.foreign('id_group').references('Groups.id').onDelete('CASCADE').onUpdate('CASCADE');
+      table.foreign('id_user').references('Manager.num_mat').onDelete('CASCADE').onUpdate('CASCADE');
   })
     .createTable('Offer', (table) => {
       table.increments('id');
       table.integer('id_group');
+      table.string('id_user');
+      table.string('description',400);
       table.date('date');
       table.string('interested', 1000);
       table.foreign('id_group').references('Groups.id').onDelete('CASCADE').onUpdate('CASCADE');
+      table.foreign('id_user').references('Manager.num_mat').onDelete('CASCADE').onUpdate('CASCADE');
     })
 };
 

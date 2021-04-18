@@ -3,6 +3,7 @@ const studentController = require('../Controller/student');
 const managerController = require('../Controller/manager')
 const waitingController = require('../Controller/waiting')
 const groupController = require('../Controller/Groups')
+const offerController = require('../Controller/offer')
 
 const router = express.Router();
 
@@ -21,6 +22,10 @@ router.get('/group/:id',groupController.getGroup);
 router.put('/group/:id',groupController.updateGroup);
 router.post('/group', groupController.createGroup);
 router.delete('/group/:id',groupController.deleteGroup);
+router.get('/offer/:id',offerController.getOffer);
+router.put('/offer/:id',offerController.updateOffer);
+router.post('/offer', offerController.createOffer);
+router.delete('/offer/:id',offerController.deleteOffer);
 
 
 module.exports = router;
